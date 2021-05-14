@@ -9,7 +9,7 @@ const Chart = () => {
     setChartdata(data)
   }
   const handleValues = (value, index) => {
-    const length = ref.current.props.data.datasets[0].data
+    const length = ref.current.data.datasets[0].data
     const newData = length.map((item, i) => {
       if (i == 0) {
         return value[0]
@@ -22,13 +22,13 @@ const Chart = () => {
   }
 
   const handleCall = (value, index) => {
-    ref.current.props.data.datasets[index - 1].data = handleValues(value, index)
+    ref.current.data.datasets[index - 1].data = handleValues(value, index)
     ref.current.update()
     // console.log("ref", ref.current.props.data.datasets[index - 1].data)
     // console.log("Updater", ref.current.update())
   }
   const getData = () => {
-    console.log("data", ref.current.props.data.datasets[0].data)
+    console.log("data", ref.current.data.datasets[0].data)
     console.log("update", ref.current.update())
   }
   useEffect(() => {
