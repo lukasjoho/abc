@@ -100,9 +100,46 @@ const Chart = () => {
             },
           },
           scales: {
-            gridLines: [
+            // x: {
+            //   display: false,
+            //   grid: {
+            //     display: false,
+            //   },
+            //   ticks: {
+            //     color: "#8c8c8b",
+            //     font: {
+            //       size: 12,
+            //       weight: "500",
+            //     },
+            //     padding: 0,
+            //     beginAtZero: true,
+            //     min: 0,
+            //     suggestedMin: 0,
+            //   },
+            // },
+            // y: {
+            //   display: true,
+            //   grid: {
+            //     color: "#ececec",
+            //   },
+            //   ticks: {
+            //     color: "#8c8c8b",
+            //     font: {
+            //       size: 12,
+            //       weight: "500",
+            //     },
+            //     padding: 6,
+            //     beginAtZero: true,
+            //     suggestedMin: 50,
+            //     suggestedMax: 100,
+            //   },
+            // },
+            yAxes: [
               {
-                color: "red",
+                ticks: {
+                  beginAtZero: true,
+                  min: 0,
+                },
               },
             ],
           },
