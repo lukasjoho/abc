@@ -20,42 +20,7 @@ const Chart = () => {
   //     },
   //   },
   // }
-  const data = {
-    labels: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "Dezember",
-    ],
-    datasets: [
-      {
-        label: "Worse",
-        borderColor: "red",
-        borderWidth: 5,
-        data: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190],
-      },
-      // {
-      //   label: "Base",
-      //   borderColor: "yellow",
-      //   borderWidth: 5,
-      //   data: [90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200],
-      // },
-      // {
-      //   label: "Best",
-      //   borderColor: "green",
-      //   borderWidth: 5,
-      //   data: [100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210],
-      // },
-    ],
-  }
+
   const handleValues = (value, index) => {
     const length = ref.current.data.datasets[0].data
     const newData = length.map((item, i) => {
@@ -72,9 +37,49 @@ const Chart = () => {
   const handleCall = (value, index) => {
     ref.current.data.datasets[index - 1].data = handleValues(value, index)
     ref.current.update()
+    // console.log("Ref", ref.current.update())
   }
-
+  const getData = () => {
+    console.log("data", ref.current.props.data.datasets[0].data)
+    console.log("update", ref.current.update())
+  }
   useEffect(() => {
+    const data = {
+      labels: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "Dezember",
+      ],
+      datasets: [
+        {
+          label: "Worse",
+          borderColor: "red",
+          borderWidth: 5,
+          data: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190],
+        },
+        {
+          label: "Base",
+          borderColor: "yellow",
+          borderWidth: 5,
+          data: [90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200],
+        },
+        {
+          label: "Best",
+          borderColor: "green",
+          borderWidth: 5,
+          data: [100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210],
+        },
+      ],
+    }
     setChartdata(data)
   }, [])
 
@@ -103,7 +108,7 @@ const Chart = () => {
           },
         }}
       />
-
+      <button onClick={getData}>GET DATA</button>
       <Form handleCall={handleCall} />
     </>
   )
