@@ -5,24 +5,11 @@ import Form from "./Form"
 const Chart = () => {
   const [chartdata, setChartdata] = useState(null)
   const ref = useRef(null)
-  // const options = {
-  //   maintainAspectRatio: true,
-  //   legend: {
-  //     position: "bottom",
-  //   },
-  //   scales: {
-  //     y: {
-  //       display: true,
-  //       ticks: {
-  //         beginAtZero: true, // minimum value will be 0.
-  //         min: 0,
-  //       },
-  //     },
-  //   },
-  // }
-
+  const handleData = data => {
+    setChartdata(data)
+  }
   const handleValues = (value, index) => {
-    const length = ref.current.data.datasets[0].data
+    const length = ref.current.props.data.datasets[0].data
     const newData = length.map((item, i) => {
       if (i == 0) {
         return value[0]
@@ -35,9 +22,10 @@ const Chart = () => {
   }
 
   const handleCall = (value, index) => {
-    ref.current.data.datasets[index - 1].data = handleValues(value, index)
+    ref.current.props.data.datasets[index - 1].data = handleValues(value, index)
     ref.current.update()
-    // console.log("Ref", ref.current.update())
+    // console.log("ref", ref.current.props.data.datasets[index - 1].data)
+    // console.log("Updater", ref.current.update())
   }
   const getData = () => {
     console.log("data", ref.current.props.data.datasets[0].data)
@@ -80,7 +68,7 @@ const Chart = () => {
         },
       ],
     }
-    setChartdata(data)
+    handleData(data)
   }, [])
 
   return (
