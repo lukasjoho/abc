@@ -3,24 +3,11 @@ import React from "react"
 import styled from "styled-components"
 
 const StyledSidebar = styled.div`
-  background: ${props => props.theme.colors.muted};
-  width: 24rem;
+  width: 32rem;
+  border-left: 2px solid ${props => props.theme.colors.lightgrey};
 `
 const Sidebar = () => {
-  return (
-    <StyledSidebar>
-      <ul>
-        <Link to="/">
-          <li> Home</li>
-        </Link>
-      </ul>
-      <ul>
-        <Link to="/scenarios">
-          <li>Scenarios</li>
-        </Link>
-      </ul>
-    </StyledSidebar>
-  )
+  return <StyledSidebar>Activity</StyledSidebar>
 }
 
 export default Sidebar
