@@ -20,6 +20,7 @@
     "gatsby-transformer-sharp": "^3.4.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-apple-emojis": "^1.2.0",
     "react-chartjs-2": "^2.7.0",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
