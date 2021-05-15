@@ -1,39 +1,76 @@
 import React, { useState, useEffect, useRef, forwardRef } from "react"
 import { Line } from "react-chartjs-2"
-import { Chart, Tooltip, CategoryScale, LinearScale, Title } from "chart.js"
+
 import Form from "./Form"
-Chart.register(LinearScale)
+
 const CompChart = () => {
-  const [chartdata, setChartdata] = useState(null)
-  const ref = useRef(null)
-  const [componentref, setComponentRef] = useState()
-  const handleData = data => {
-    setChartdata(data)
+  const [chartdata, setChartdata] = useState({})
+  const [statedata, setStatedata] = useState({
+    worst: [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160],
+    base: [60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170],
+    best: [70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180],
+  })
+
+  const [fieldValues, setFieldValues] = useState({
+    initial: 1,
+    revenue: [100, 5, 12, 25],
+    cogs: [40, 2, 6, 12],
+    opex: [20, 1, 3, 6],
+  })
+  const updateFieldArray = (e, index) => {
+    fieldValues[e.target.name][index] = parseInt(e.target.value)
+    return [...fieldValues[e.target.name]]
   }
-  const handleValues = (value, index) => {
-    const length = ref.current.data.datasets[0].data
-    const newData = length.map((item, i) => {
+  const handleFieldValuesChange = (e, index) => {
+    setFieldValues({
+      ...fieldValues,
+      [e.target.name]: updateFieldArray(e, index),
+    })
+    transformValues(index)
+  }
+  const generateArray = index => {
+    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    const newData = array.map((item, i) => {
       if (i == 0) {
-        return value[0]
+        const ebit =
+          fieldValues.revenue[0] - fieldValues.cogs[0] - fieldValues.opex[0]
+        return ebit
       } else {
-        const newValue = value[0] * (1 + value[index] / 100) ** i
-        return parseFloat(newValue.toFixed(2))
+        const futureEbit =
+          fieldValues.revenue[0] * (1 + fieldValues.revenue[index] / 100) ** i -
+          fieldValues.cogs[0] * (1 + fieldValues.cogs[index] / 100) ** i -
+          fieldValues.opex[0] * (1 + fieldValues.opex[index] / 100) ** i
+        return parseFloat(futureEbit)
       }
     })
     return newData
   }
+  const transformValues = index => {
+    let selected
+    if (index == 1) {
+      selected = "worst"
+    }
+    if (index == 2) {
+      selected = "base"
+    }
+    if (index == 3) {
+      selected = "best"
+    }
+    const newArray = generateArray(index)
 
-  const handleCall = (value, index) => {
-    ref.current.data.datasets[index - 1].data = handleValues(value, index)
-    ref.current.update()
-    // console.log("ref", ref.current.props.data.datasets[index - 1].data)
-    // console.log("Updater", ref.current.update())
+    setStatedata({
+      ...statedata,
+      [selected]: [...newArray],
+    })
   }
-  const getData = () => {}
-  const handleRef = componentref => {}
 
-  useEffect(() => {
-    const data = {
+  const handleState = () => {
+    setStatedata([40, 80, 75, 90, 67, 120, 100, 110, 100, 130, 90, 120])
+  }
+
+  const chart = () => {
+    let datacontent = statedata
+    setChartdata({
       labels: [
         "January",
         "February",
@@ -53,31 +90,41 @@ const CompChart = () => {
           label: "Worse",
           borderColor: "red",
           borderWidth: 5,
-          data: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190],
+          data: datacontent.worst,
         },
         {
           label: "Base",
           borderColor: "yellow",
           borderWidth: 5,
-          data: [90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200],
+          data: datacontent.base,
         },
         {
           label: "Best",
           borderColor: "green",
           borderWidth: 5,
-          data: [100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210],
+          data: datacontent.best,
         },
       ],
-    }
-    handleData(data)
-
-    // console.log(componentref.legend.position)
-  }, [ref.current])
+    })
+  }
+  useEffect(() => {
+    chart()
+  }, [statedata])
+  useEffect(() => {
+    const worst = generateArray(1)
+    const base = generateArray(2)
+    const best = generateArray(3)
+    setStatedata({
+      ...statedata,
+      worst: [...worst],
+      base: [...base],
+      best: [...best],
+    })
+  }, [])
 
   return (
     <>
       <Line
-        ref={ref}
         id="canvas"
         data={chartdata}
         width={100}
@@ -100,30 +147,14 @@ const CompChart = () => {
                 },
               },
             ],
-            y: {
-              display: true,
-              grid: {
-                color: "#ececec",
-              },
-              ticks: {
-                color: "#8c8c8b",
-                font: {
-                  size: 12,
-                  weight: "900",
-                },
-                padding: 50,
-                beginAtZero: true,
-                suggestedMin: 50,
-                suggestedMax: 100,
-                min: 10,
-                max: 200,
-              },
-            },
           },
         }}
       />
-      <button onClick={getData}>GET DATA</button>
-      <Form handleCall={handleCall} />
+
+      <Form
+        handleFieldValuesChange={handleFieldValuesChange}
+        fieldValues={fieldValues}
+      />
     </>
   )
 }
