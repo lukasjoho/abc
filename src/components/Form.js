@@ -16,7 +16,7 @@ const Form = ({ handleCall }) => {
     handleCall(value[e.target.name], index)
   }
   useEffect(() => {
-    console.log(value)
+    // console.log(value)
   })
   return (
     <div>

@@ -3,7 +3,7 @@ import PageTitle from "../components/PageTitle"
 
 import Layout from "../layouts/Layout"
 import IconTitle from "src/images/icons/icon-chart-increasing.png"
-import Chart from "../components/Chart"
+import CompChart from "../components/Chart"
 import Form from "../components/Form"
 
 const IndexPage = () => {
@@ -19,7 +19,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <PageTitle icon={IconTitle} text="Revenue Growth Model" />
-      <Chart ref={cref} />
+      <CompChart ref={cref} />
     </Layout>
   )
 }

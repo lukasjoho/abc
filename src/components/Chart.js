@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef, forwardRef } from "react"
 import { Line } from "react-chartjs-2"
-
+import { Chart, Tooltip, CategoryScale, LinearScale, Title } from "chart.js"
 import Form from "./Form"
-const Chart = () => {
+Chart.register(LinearScale)
+const CompChart = () => {
   const [chartdata, setChartdata] = useState(null)
   const ref = useRef(null)
+  const [componentref, setComponentRef] = useState()
   const handleData = data => {
     setChartdata(data)
   }
@@ -27,10 +29,9 @@ const Chart = () => {
     // console.log("ref", ref.current.props.data.datasets[index - 1].data)
     // console.log("Updater", ref.current.update())
   }
-  const getData = () => {
-    console.log("data", ref.current.data.datasets[0].data)
-    console.log("update", ref.current.update())
-  }
+  const getData = () => {}
+  const handleRef = componentref => {}
+
   useEffect(() => {
     const data = {
       labels: [
@@ -69,7 +70,9 @@ const Chart = () => {
       ],
     }
     handleData(data)
-  }, [])
+
+    // console.log(componentref.legend.position)
+  }, [ref.current])
 
   return (
     <>
@@ -88,48 +91,34 @@ const Chart = () => {
             },
           },
           scales: {
-            // x: {
-            //   display: false,
-            //   grid: {
-            //     display: false,
-            //   },
-            //   ticks: {
-            //     color: "#8c8c8b",
-            //     font: {
-            //       size: 12,
-            //       weight: "500",
-            //     },
-            //     padding: 0,
-            //     beginAtZero: true,
-            //     min: 0,
-            //     suggestedMin: 0,
-            //   },
-            // },
-            // y: {
-            //   display: true,
-            //   grid: {
-            //     color: "#ececec",
-            //   },
-            //   ticks: {
-            //     color: "#8c8c8b",
-            //     font: {
-            //       size: 12,
-            //       weight: "500",
-            //     },
-            //     padding: 6,
-            //     beginAtZero: true,
-            //     suggestedMin: 50,
-            //     suggestedMax: 100,
-            //   },
-            // },
             yAxes: [
               {
                 ticks: {
                   beginAtZero: true,
                   min: 0,
+                  max: 200,
                 },
               },
             ],
+            y: {
+              display: true,
+              grid: {
+                color: "#ececec",
+              },
+              ticks: {
+                color: "#8c8c8b",
+                font: {
+                  size: 12,
+                  weight: "900",
+                },
+                padding: 50,
+                beginAtZero: true,
+                suggestedMin: 50,
+                suggestedMax: 100,
+                min: 10,
+                max: 200,
+              },
+            },
           },
         }}
       />
@@ -138,4 +127,4 @@ const Chart = () => {
     </>
   )
 }
-export default forwardRef(Chart)
+export default forwardRef(CompChart)
