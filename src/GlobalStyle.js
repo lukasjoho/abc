@@ -4,6 +4,9 @@ const GlobalStyle = createGlobalStyle`
 html{
   font-size: 62.5%;
   -webkit-tap-highlight-color: transparent;
+  *{
+    box-sizing: border-box;
+  }
   body{
     font-size: 1.6rem;
     font-family: "Inter";
@@ -16,6 +19,10 @@ html{
       margin: 0;
       line-height: 1.5;
     }
+     a{
+      text-decoration: none;
+      color: inherit;
+    }
     .activeNav{
       >*{
         background: #E5E7E9;
@@ -25,14 +32,9 @@ html{
       }
     
     }
-    a{
-      text-decoration: none;
-      color: inherit;
-    }
+   
   }
-  *{
-    box-sizing: border-box;
-  }
+  
 }
 
 `
