@@ -65,23 +65,24 @@ const StyledPromo = styled.div`
 `
 const Promo = () => {
   return (
-    <Link to="/scenarios">
-      <StyledPromo>
-        <div classNae="text">
-          <div className="label">
-            <Emoji className="emoji" name="sparkles" />
-            <h2>New</h2>
-          </div>
-          <h3>Scenario Models</h3>
-          <p>Let us introduce you to scenario models! </p>
+    <StyledPromo>
+      <div classNae="text">
+        <div className="label">
+          <Emoji className="emoji" name="sparkles" />
+          <h2>New</h2>
+        </div>
+        <h3>Scenario Models</h3>
+        <p>Let us introduce you to scenario models! </p>
+
+        <Link to="/scenarios">
           <Button text="Get Started" />
-        </div>
-        <div className="images">
-          <img className="chart" src={ImageChart} alt="" />
-          <img className="navitem" src={ImageNavItem} alt="" />
-        </div>
-      </StyledPromo>
-    </Link>
+        </Link>
+      </div>
+      <div className="images">
+        <img className="chart" src={ImageChart} alt="" />
+        <img className="navitem" src={ImageNavItem} alt="" />
+      </div>
+    </StyledPromo>
   )
 }
 
