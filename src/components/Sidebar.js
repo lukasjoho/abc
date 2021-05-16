@@ -12,6 +12,7 @@ const StyledSidebar = styled.div`
   width: 32rem;
   border-left: 1px solid ${props => props.theme.colors.lightgrey};
   flex-shrink: 0;
+  background: white;
   .nav {
     display: flex;
     height: 4.5rem;
@@ -21,6 +22,7 @@ const StyledSidebar = styled.div`
       height: 100%;
       display: flex;
       align-items: center;
+
       p {
         font-weight: 500;
         color: ${props => props.theme.colors.middlegrey};
@@ -94,6 +96,7 @@ const Sidebar = () => {
   return (
     <StyledSidebar>
       <SidebarContainer>
+        <Upper text="news box" mb="1rem" />
         <Badge
           text="Thanks for trying out our new feature! As we strive to constantly
         improve our product, we would appreciate your feedback! It takes no more than 3 minutes."
