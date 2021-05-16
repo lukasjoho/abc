@@ -1,27 +1,24 @@
-import React, { useState, useRef } from "react"
+import * as React from "react"
 import PageTitle from "../components/PageTitle"
 
 import Layout from "../layouts/Layout"
 import IconTitle from "src/images/icons/icon-chart-increasing.png"
-import CompChart from "../components/Chart"
-import Form from "../components/Form"
+import "@fontsource/inter/100.css"
+import "@fontsource/inter/200.css"
+import "@fontsource/inter/300.css"
+import "@fontsource/inter/400.css"
+import "@fontsource/inter/500.css"
+import "@fontsource/inter/600.css"
+import "@fontsource/inter/700.css"
+import "@fontsource/inter/800.css"
+import "@fontsource/inter/900.css"
+import Promo from "../components/Promo"
+import Overview from "../components/Overview"
+const ScenariosPage = () => (
+  <Layout>
+    <PageTitle icon="chart-increasing" text="Your scenarios" />
+    <Overview />
+  </Layout>
+)
 
-const IndexPage = () => {
-  const cref = useRef()
-  const [value, setValue] = useState({
-    initial: "",
-  })
-  const handleChange = e => {
-    setValue({ ...value, [e.target.name]: e.target.value })
-    console.log("cref")
-  }
-
-  return (
-    <Layout>
-      <PageTitle icon={IconTitle} text="Revenue Growth Model" />
-      <CompChart ref={cref} />
-    </Layout>
-  )
-}
-
-export default IndexPage
+export default ScenariosPage
