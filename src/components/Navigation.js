@@ -38,6 +38,9 @@ const StyledNavItem = styled.div`
   &.spaced {
     margin-bottom: 1.6rem;
   }
+  &.featured {
+    border: 2px dashed ${props => props.theme.colors.lightgrey};
+  }
   .viz {
     width: 3rem;
     height: 3rem;
@@ -65,12 +68,18 @@ const StyledNavItem = styled.div`
     }
   }
 `
-const NavItem = ({ icon, image, text, link }) => {
+const NavItem = ({ icon, image, text, link, featured }) => {
   return (
     <>
       {link ? (
-        <Link to={link} activeClassName="activeNav">
-          <StyledNavItem className={image && "spaced"}>
+        <Link
+          to={link}
+          activeClassName="activeNav"
+          partiallyActive={!image ? true : false}
+        >
+          <StyledNavItem
+            className={(image && "spaced") || (featured && "featured")}
+          >
             <div className="viz">
               {icon && <Emoji className="emoji" name={icon} />}
               {image && <img src={image} />}
@@ -101,7 +110,12 @@ const Navigation = () => {
       <NavSection title="acme spaces">
         <NavItem icon="telescope" text="Forecasting" />
         <NavItem icon="rocket" text="Performance" />
-        <NavItem icon="chart-increasing" text="Scenarios" link="/scenarios" />
+        <NavItem
+          icon="chart-increasing"
+          text="Scenarios"
+          link="/scenarios"
+          featured
+        />
       </NavSection>
       <NavSection title="shared spaces">
         <NavItem icon="telescope" text="Finance team" />

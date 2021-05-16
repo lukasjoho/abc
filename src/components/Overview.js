@@ -77,7 +77,7 @@ const ModelItem = ({ avatar, image, title, updated, newItem }) => {
   return (
     <>
       {image && (
-        <Link to="/model-1">
+        <Link to="/scenarios/model-1">
           <StyledModelItem className={newItem ? "new" : "content"}>
             <>
               <img src={image} alt="" width="100%" />
