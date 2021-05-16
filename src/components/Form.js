@@ -6,11 +6,11 @@ const StyledDot = styled.div`
   border-radius: 100%;
   background: ${props => props.color};
   margin-left: 0.5rem;
+  flex-shrink: 0;
 `
 const StyledTable = styled.table`
   border-collapse: collapse;
-  border: 1px solid ${props => props.theme.colors.lightgrey};
-  background: white;
+  border: none;
   color: ${props => props.theme.colors.grey};
   width: 100%;
   td,
@@ -25,11 +25,17 @@ const StyledTable = styled.table`
     &:first-child {
       color: ${props => props.theme.colors.dark};
       padding: 0 1rem;
-
+      border-left: none;
       span {
         width: 10rem;
       }
     }
+  }
+  tr:first-child th {
+    border-top: none;
+  }
+  tr:last-child td:first-child {
+    border-bottom: none;
   }
   th {
     font-weight: 400;
@@ -37,6 +43,12 @@ const StyledTable = styled.table`
     font-size: 1.2rem;
     letter-spacing: 0.1rem;
     padding: 0 1rem;
+    &:first-child {
+      border-left: none;
+    }
+    &:last-child {
+      border-right: none;
+    }
     > div {
       display: flex;
       align-items: center;
@@ -44,7 +56,7 @@ const StyledTable = styled.table`
   }
   input {
     color: ${props => props.theme.colors.dark};
-    background: transparent;
+    background: ${props => props.theme.colors.yellow};
     height: 4rem;
     border: none;
     outline: none;
@@ -53,22 +65,26 @@ const StyledTable = styled.table`
 
     transition: 0.3s ease;
     padding: 0 1rem;
-    border-radius: 1rem;
     width: 100%;
     font-size: 1.6rem;
     &:hover {
-      box-shadow: 0px 0px 4px ${props => `${props.theme.colors.grey}50`};
+      border-radius: 1rem;
+
+      box-shadow: 0px 0px 6px ${props => `${props.theme.colors.grey}60`};
       transform: scale(1.01);
-      background: ${props => props.theme.colors.muted};
+      background: ${props => props.theme.colors.yellow};
     }
     &:focus {
-      box-shadow: 0px 0px 12px ${props => `${props.theme.colors.grey}50`};
+      border-radius: 1rem;
+
+      box-shadow: 0px 0px 12px ${props => `${props.theme.colors.grey}60`};
       transform: scale(1.03);
-      background: ${props => props.theme.colors.muted};
+      background: ${props => props.theme.colors.yellow};
     }
   }
 `
 const Form = ({ handleFieldValuesChange, fieldValues }) => {
+  console.log("Fieldvalues", fieldValues)
   const handleChange = (e, index) => {
     handleFieldValuesChange(e, index)
   }
@@ -79,28 +95,28 @@ const Form = ({ handleFieldValuesChange, fieldValues }) => {
         <tbody>
           <tr>
             <th>Assumptions</th>
-            <th>Current</th>
+            <th style={{ width: "160px" }}>Actuals (Million)</th>
             <th>
               <div>
-                Worst
+                Worst (%)
                 <StyledDot color="#F1726F" />
               </div>
             </th>
             <th>
               <div>
-                Base
+                Base (%)
                 <StyledDot color="#F4C686" />
               </div>
             </th>
             <th>
               <div>
-                Best
+                Best (%)
                 <StyledDot color="#7ABB80" />
               </div>
             </th>
           </tr>
           <tr>
-            <td style={{ width: "180px" }}>
+            <td style={{ width: "160px" }}>
               <span>Revenue Growth</span>
             </td>
             {fieldValues.revenue.map((value, index) => (
@@ -110,6 +126,7 @@ const Form = ({ handleFieldValuesChange, fieldValues }) => {
                   value={value}
                   name="revenue"
                   onChange={e => handleChange(e, index)}
+                  step="0.1"
                 />
               </td>
             ))}
