@@ -3,6 +3,13 @@ import React from "react"
 import styled from "styled-components"
 import Emoji from "react-apple-emojis"
 import ImageAcme from "src/images/image-acmecorp.png"
+import IconIntegrations from "src/images/icons/icon-integrations.svg"
+import IconMagnifier from "src/images/icons/icon-magnifier.svg"
+import IconModeling from "src/images/icons/icon-modeling.svg"
+import IconMappings from "src/images/icons/icon-mappings.svg"
+import IconWorkflow from "src/images/icons/icon-workflow.svg"
+import IconTables from "src/images/icons/icon-tables.svg"
+import IconBell from "src/images/icons/icon-bell.svg"
 const StyledNavigation = styled.div`
   background: ${props => props.theme.colors.muted};
   width: 26rem;
@@ -54,6 +61,10 @@ const StyledNavItem = styled.div`
       width: 1.8rem;
       height: 1.8rem;
     }
+    .svg {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
     img {
       width: 100%;
     }
@@ -68,7 +79,7 @@ const StyledNavItem = styled.div`
     }
   }
 `
-const NavItem = ({ icon, image, text, link, featured }) => {
+const NavItem = ({ icon, image, text, link, featured, svg }) => {
   return (
     <>
       {link ? (
@@ -82,6 +93,7 @@ const NavItem = ({ icon, image, text, link, featured }) => {
           >
             <div className="viz">
               {icon && <Emoji className="emoji" name={icon} />}
+              {svg && <img className="svg" src={svg} />}
               {image && <img src={image} />}
             </div>
             <p className={image && "highlighted"}>{text}</p>
@@ -91,6 +103,7 @@ const NavItem = ({ icon, image, text, link, featured }) => {
         <StyledNavItem className={image && "spaced"}>
           <div className="viz">
             {icon && <Emoji className="emoji" name={icon} />}
+            {svg && <img className="svg" src={svg} />}
             {image && <img src={image} />}
           </div>
           <p className={image && "highlighted"}>{text}</p>
@@ -104,8 +117,8 @@ const Navigation = () => {
     <StyledNavigation>
       <NavSection>
         <NavItem image={ImageAcme} text="Acme Corp" link="/" />
-        <NavItem icon="telescope" text="Search" />
-        <NavItem icon="rocket" text="Updates" />
+        <NavItem svg={IconMagnifier} text="Search" />
+        <NavItem svg={IconBell} text="Updates" />
       </NavSection>
       <NavSection title="acme spaces">
         <NavItem icon="telescope" text="Forecasting" />
@@ -118,18 +131,18 @@ const Navigation = () => {
         />
       </NavSection>
       <NavSection title="shared spaces">
-        <NavItem icon="telescope" text="Finance team" />
-        <NavItem icon="rocket" text="Investor dashboard" />
+        <NavItem icon="money-mouth-face" text="Finance team" />
+        <NavItem icon="bar-chart" text="Investor dashboard" />
       </NavSection>
       <NavSection title="private spaces">
-        <NavItem icon="telescope" text="Notes" />
+        <NavItem icon="notebook-with-decorative-cover" text="Notes" />
       </NavSection>
       <NavSection title="settings spaces">
-        <NavItem icon="telescope" text="Tables" />
-        <NavItem icon="rocket" text="Workflows" />
-        <NavItem icon="chart-increasing" text="Modeling" />
-        <NavItem icon="chart-increasing" text="Mappings" />
-        <NavItem icon="chart-increasing" text="Integrations" />
+        <NavItem svg={IconTables} text="Tables" />
+        <NavItem svg={IconWorkflow} text="Workflows" />
+        <NavItem svg={IconModeling} text="Modeling" />
+        <NavItem svg={IconMappings} text="Mappings" />
+        <NavItem svg={IconIntegrations} text="Integrations" />
       </NavSection>
     </StyledNavigation>
   )
