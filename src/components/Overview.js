@@ -16,9 +16,10 @@ const StyledOverview = styled.div`
 const StyledModelItem = styled.div`
   border: 1px solid ${props => props.theme.colors.lightgrey};
   border-radius: 1.5rem;
-  width: 300px;
+  width: 280px;
   overflow: hidden;
   transition: 0.15s ease;
+  flex-shrink: 0;
   &.new {
     border: 2px dashed ${props => props.theme.colors.lightgrey};
     display: flex;
