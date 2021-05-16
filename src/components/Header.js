@@ -10,12 +10,13 @@ import ImageAvatar2 from "src/images/image-andrew.jpg"
 import ImageAvatar3 from "src/images/image-laura.jpg"
 import ImageAvatar4 from "src/images/image-julio.jpg"
 const StyledHeader = styled.div`
-  background: ${props => props.theme.colors.muted};
+  /* background: ${props => props.theme.colors.muted}; */
   height: 40px;
-  width: 100vw;
+  width: 800px;
   display: flex;
   align-items: center;
   border-bottom: 2px solid ${props => props.theme.colors.lightgrey};
+  background: red;
 `
 const StyledDots = styled.div`
   display: flex;
@@ -38,6 +39,11 @@ const StyledDots = styled.div`
 `
 const StyledAvatars = styled.div`
   display: flex;
+  img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+  }
 `
 const StyledToolbar = styled.div`
   display: flex;
