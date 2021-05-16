@@ -27,9 +27,11 @@ const StyledLayout = styled.div`
   .body {
     display: flex;
     flex-grow: 1;
+
     .inner {
       flex-grow: 1;
       padding: 5.5rem;
+      min-width: 600px;
     }
   }
 `
