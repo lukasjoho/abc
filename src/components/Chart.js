@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useRef, forwardRef } from "react"
-import { Line } from "react-chartjs-2"
-
+import { Line, Bar } from "react-chartjs-2"
+import styled from "styled-components"
 import Form from "./Form"
+
+const StyledChart = styled.div`
+  /* border: 1px solid ${props => props.theme.colors.lightgrey}; */
+  margin-bottom: 4rem;
+  max-width: 800px;
+`
 
 const CompChart = () => {
   const [chartdata, setChartdata] = useState({})
@@ -13,9 +19,9 @@ const CompChart = () => {
 
   const [fieldValues, setFieldValues] = useState({
     initial: 1,
-    revenue: [100, 5, 12, 25],
-    cogs: [40, 2, 6, 12],
-    opex: [20, 1, 3, 6],
+    revenue: [100, 5, 12, 15],
+    cogs: [40, 3, 8, 12],
+    opex: [20, 2, 4, 8],
   })
   const updateFieldArray = (e, index) => {
     fieldValues[e.target.name][index] = parseInt(e.target.value)
@@ -45,6 +51,7 @@ const CompChart = () => {
     })
     return newData
   }
+
   const transformValues = index => {
     let selected
     if (index == 1) {
@@ -64,48 +71,106 @@ const CompChart = () => {
     })
   }
 
-  const handleState = () => {
-    setStatedata([40, 80, 75, 90, 67, 120, 100, 110, 100, 130, 90, 120])
-  }
-
   const chart = () => {
     let datacontent = statedata
     setChartdata({
       labels: [
-        "January",
-        "February",
-        "March",
-        "April",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
         "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "Dezember",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dez",
       ],
       datasets: [
         {
-          label: "Worse",
-          borderColor: "red",
-          borderWidth: 5,
+          label: "Worst",
+          backgroundColor: "#F1726F25",
+          borderColor: "#F1726F",
+          borderWidth: 3,
           data: datacontent.worst,
+          lineTension: 0,
         },
         {
           label: "Base",
-          borderColor: "yellow",
-          borderWidth: 5,
+          backgroundColor: "#F4C68625",
+          borderColor: "#F4C686",
+          borderWidth: 3,
           data: datacontent.base,
+          lineTension: 0,
         },
         {
           label: "Best",
-          borderColor: "green",
-          borderWidth: 5,
+          backgroundColor: "#7ABB8025",
+          borderColor: "#7ABB80",
+          borderWidth: 3,
           data: datacontent.best,
+          lineTension: 0,
         },
       ],
     })
+  }
+  const options = {
+    maintainAspectRatio: true,
+    legend: {
+      display: false,
+      position: "bottom",
+      labels: {
+        font: {
+          size: 2,
+          family: "Inter",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+        labels: {
+          font: {
+            size: 2,
+            family: "Inter",
+          },
+        },
+      },
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 300,
+            fontFamily: "Inter",
+            fontColor: "#707880",
+          },
+          gridLines: {
+            display: true,
+            lineWidth: 2,
+            drawBorder: false,
+          },
+        },
+      ],
+      xAxes: [
+        {
+          ticks: {
+            fontFamily: "Inter",
+            fontColor: "#707880",
+          },
+          gridLines: {
+            display: false,
+            drawBorder: true,
+            borderWidth: 2,
+          },
+        },
+      ],
+    },
   }
   useEffect(() => {
     chart()
@@ -120,36 +185,20 @@ const CompChart = () => {
       base: [...base],
       best: [...best],
     })
+    console.log()
   }, [])
 
   return (
     <>
-      <Line
-        id="canvas"
-        data={chartdata}
-        width={100}
-        height={60}
-        options={{
-          maintainAspectRatio: true,
-          plugins: {
-            legend: {
-              display: true,
-              position: "bottom",
-            },
-          },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                  min: 0,
-                  max: 200,
-                },
-              },
-            ],
-          },
-        }}
-      />
+      <StyledChart>
+        <Line
+          id="canvas"
+          data={chartdata}
+          width={100}
+          height={60}
+          options={options}
+        />
+      </StyledChart>
 
       <Form
         handleFieldValuesChange={handleFieldValuesChange}
