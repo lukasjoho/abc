@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
+const StyledTitle = styled.h2`
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+`
 const StyledDot = styled.div`
   width: 0.8rem;
   height: 0.8rem;
@@ -91,6 +96,7 @@ const Form = ({ handleFieldValuesChange, fieldValues }) => {
 
   return (
     <div>
+      <StyledTitle>⬇️ Adjust your scenarios below</StyledTitle>
       <StyledTable>
         <tbody>
           <tr>

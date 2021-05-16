@@ -267,7 +267,7 @@ const CompChart = () => {
           ticks: {
             beginAtZero: true,
             min: 0,
-            max: 300,
+            max: 500,
             fontFamily: "Inter",
             fontColor: "#C2C7CC",
             padding: 10,
