@@ -5,8 +5,6 @@ import Sidebar from "../components/Sidebar"
 import Theme from "src/Theme"
 import GlobalStyle from "src/GlobalStyle"
 import styled from "styled-components"
-import Top from "../components/top"
-import Header from "../components/header"
 
 import IconPlus from "src/images/icons/icon-plus.svg"
 import IconSave from "src/images/icons/icon-save.svg"

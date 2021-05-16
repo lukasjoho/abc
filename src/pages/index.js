@@ -13,7 +13,7 @@ import "@fontsource/inter/700.css"
 import "@fontsource/inter/800.css"
 import "@fontsource/inter/900.css"
 import Promo from "../components/Promo"
-import Skeletons from "src/components/skeletons"
+
 import styled from "styled-components"
 const StyledSkeletons = styled.div`
   .row {
