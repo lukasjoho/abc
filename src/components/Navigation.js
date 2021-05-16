@@ -34,12 +34,13 @@ const StyledNavItem = styled.div`
   height: 4rem;
   padding: 0 1.2rem;
   align-items: center;
+  border-radius: 1rem;
   &.spaced {
     margin-bottom: 1.6rem;
   }
   .viz {
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,6 +50,9 @@ const StyledNavItem = styled.div`
     .emoji {
       width: 1.8rem;
       height: 1.8rem;
+    }
+    img {
+      width: 100%;
     }
   }
 
@@ -61,17 +65,29 @@ const StyledNavItem = styled.div`
     }
   }
 `
-const NavItem = ({ icon, image, text, link = "/" }) => {
+const NavItem = ({ icon, image, text, link }) => {
   return (
-    <Link to={link} activeClassName="active">
-      <StyledNavItem className={image && "spaced"}>
-        <div className="viz">
-          {icon && <Emoji className="emoji" name={icon} />}
-          {image && <img src={image} />}
-        </div>
-        <p className={image && "highlighted"}>{text}</p>
-      </StyledNavItem>
-    </Link>
+    <>
+      {link ? (
+        <Link to={link} activeClassName="activeNav">
+          <StyledNavItem className={image && "spaced"}>
+            <div className="viz">
+              {icon && <Emoji className="emoji" name={icon} />}
+              {image && <img src={image} />}
+            </div>
+            <p className={image && "highlighted"}>{text}</p>
+          </StyledNavItem>
+        </Link>
+      ) : (
+        <StyledNavItem className={image && "spaced"}>
+          <div className="viz">
+            {icon && <Emoji className="emoji" name={icon} />}
+            {image && <img src={image} />}
+          </div>
+          <p className={image && "highlighted"}>{text}</p>
+        </StyledNavItem>
+      )}
+    </>
   )
 }
 const Navigation = () => {

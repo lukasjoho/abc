@@ -14,10 +14,17 @@ html{
     }
     p{
       margin: 0;
+      line-height: 1.5;
     }
-    /* .active{
-      background: red;
-    } */
+    .activeNav{
+      >*{
+        background: #E5E7E9;
+        p{
+          color: ${props => props.theme.colors.dark};
+        }
+      }
+    
+    }
     a{
       text-decoration: none;
       color: inherit;
