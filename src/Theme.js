@@ -10,6 +10,7 @@ const theme = {
     middlegrey: "#C2C7CC",
     green: "#7EA095",
     blue: "#426C8D",
+    yellow: "#FDF9EC",
   },
 }
 
