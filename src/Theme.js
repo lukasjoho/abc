@@ -6,6 +6,10 @@ const theme = {
     dark: "#141719",
     muted: "#F7F8F8",
     lightgrey: "#E8EAEC",
+    grey: "#707880",
+    middlegrey: "#C2C7CC",
+    green: "#7EA095",
+    blue: "#426C8D",
   },
 }
 
