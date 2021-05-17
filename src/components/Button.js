@@ -20,12 +20,23 @@ const StyledButton = styled.button`
     background: #7ea094;
   }
 `
-const Button = ({ text }) => {
+const Button = ({ text, href }) => {
   return (
-    <StyledButton>
-      <img src={IconArrowButton} alt="" />
-      {text}
-    </StyledButton>
+    <>
+      {href ? (
+        <a href={href} target="_blank">
+          <StyledButton>
+            <img src={IconArrowButton} alt="" />
+            {text}
+          </StyledButton>
+        </a>
+      ) : (
+        <StyledButton>
+          <img src={IconArrowButton} alt="" />
+          {text}
+        </StyledButton>
+      )}
+    </>
   )
 }
 

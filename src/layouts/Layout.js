@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar"
 import Theme from "src/Theme"
 import GlobalStyle from "src/GlobalStyle"
 import styled from "styled-components"
-
+import Button from "src/components/Button"
 import IconPlus from "src/images/icons/icon-plus.svg"
 import IconSave from "src/images/icons/icon-save.svg"
 import IconPlay from "src/images/icons/icon-play.svg"
@@ -16,6 +16,8 @@ import ImageAvatar1 from "src/images/image-lukas.jpg"
 import ImageAvatar2 from "src/images/image-andrew.jpg"
 import ImageAvatar3 from "src/images/image-laura.jpg"
 import ImageAvatar4 from "src/images/image-julio.jpg"
+import GetWindowDimensions from "src/utils/_getWindowDimensions.js"
+
 const StyledLayout = styled.div`
   width: 100vw;
   min-height: 100vh;
@@ -95,6 +97,20 @@ const StyledToolbar = styled.div`
     margin-left: 2.5rem;
   }
 `
+const StyledMobile = styled.div`
+  padding: 3rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  h1 {
+    font-size: 3rem;
+    line-height: 4.5rem;
+    margin-bottom: 3rem;
+  }
+`
 
 const Icon = ({ icon }) => {
   return (
@@ -104,40 +120,53 @@ const Icon = ({ icon }) => {
   )
 }
 const Layout = ({ children }) => {
+  const { windowWidth } = GetWindowDimensions()
+  const isDesktop = windowWidth >= 960
   return (
     <>
       <Theme>
         <GlobalStyle />
 
-        <StyledLayout>
-          <StyledTop>
-            <StyledDots>
-              <div className="dot" />
-              <div className="dot" />
-              <div className="dot" />
-            </StyledDots>
-            <StyledRouting>
-              <img src={IconArrow} alt="" />
-            </StyledRouting>
-            <StyledToolbar>
-              <Icon icon={IconPlus} />
-              <StyledAvatars>
-                <img src={ImageAvatar1} alt="" />
-                <img src={ImageAvatar2} alt="" />
-                <img src={ImageAvatar3} alt="" />
-                <img src={ImageAvatar4} alt="" />
-              </StyledAvatars>
-              <Icon icon={IconSave} />
-              <Icon icon={IconPlay} />
-              <Icon icon={IconDots} />
-            </StyledToolbar>
-          </StyledTop>
-          <div className="body">
-            <Navigation />
-            <div className="inner">{children}</div>
-            <Sidebar />
-          </div>
-        </StyledLayout>
+        {isDesktop && (
+          <StyledLayout>
+            <StyledTop>
+              <StyledDots>
+                <div className="dot" />
+                <div className="dot" />
+                <div className="dot" />
+              </StyledDots>
+              <StyledRouting>
+                <img src={IconArrow} alt="" />
+              </StyledRouting>
+              <StyledToolbar>
+                <Icon icon={IconPlus} />
+                <StyledAvatars>
+                  <img src={ImageAvatar1} alt="" />
+                  <img src={ImageAvatar2} alt="" />
+                  <img src={ImageAvatar3} alt="" />
+                  <img src={ImageAvatar4} alt="" />
+                </StyledAvatars>
+                <Icon icon={IconSave} />
+                <Icon icon={IconPlay} />
+                <Icon icon={IconDots} />
+              </StyledToolbar>
+            </StyledTop>
+            <div className="body">
+              <Navigation />
+              <div className="inner">{children}</div>
+              <Sidebar />
+            </div>
+          </StyledLayout>
+        )}
+        {!isDesktop && (
+          <StyledMobile>
+            <h1>
+              We are not yet on mobile. <br />
+              Visit our website instead.
+            </h1>
+            <Button text="Our Website" href="https://abacum.io" />
+          </StyledMobile>
+        )}
       </Theme>
     </>
   )
