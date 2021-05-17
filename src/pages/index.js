@@ -15,6 +15,7 @@ import "@fontsource/inter/900.css"
 import Promo from "../components/Promo"
 
 import styled from "styled-components"
+import Meta from "../components/Meta"
 const StyledSkeletons = styled.div`
   .row {
     display: flex;
@@ -36,29 +37,36 @@ const Single = styled.div`
 `
 
 const IndexPage = () => (
-  <Layout>
-    <PageTitle icon="office-building" text="Home" />
-    <Promo />
-    <StyledSkeletons>
-      <div className="row">
-        <Single height="200px" width="30%" />
-        <Single height="200px" width="30%" />
-        <Single height="200px" width="30%" />
-      </div>
-      <div className="row">
-        <div className="col">
-          <Single height="200px" width="100%" />
+  <>
+    <Meta
+      title="Home"
+      description="Welcome to your personalized home screen."
+      url="https://kind-ride-786754.netlify.app"
+    />
+    <Layout>
+      <PageTitle icon="office-building" text="Home" />
+      <Promo />
+      <StyledSkeletons>
+        <div className="row">
+          <Single height="200px" width="30%" />
+          <Single height="200px" width="30%" />
+          <Single height="200px" width="30%" />
         </div>
-        <div className="col">
-          <Single height="30px" width="100%" />
-          <Single height="30px" width="100%" />
-          <Single height="30px" width="100%" />
-          <Single height="30px" width="100%" />
-          <Single height="30px" width="100%" />
+        <div className="row">
+          <div className="col">
+            <Single height="200px" width="100%" />
+          </div>
+          <div className="col">
+            <Single height="30px" width="100%" />
+            <Single height="30px" width="100%" />
+            <Single height="30px" width="100%" />
+            <Single height="30px" width="100%" />
+            <Single height="30px" width="100%" />
+          </div>
         </div>
-      </div>
-    </StyledSkeletons>
-  </Layout>
+      </StyledSkeletons>
+    </Layout>
+  </>
 )
 
 export default IndexPage

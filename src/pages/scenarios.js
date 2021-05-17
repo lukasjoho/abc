@@ -14,11 +14,19 @@ import "@fontsource/inter/800.css"
 import "@fontsource/inter/900.css"
 import Promo from "../components/Promo"
 import Overview from "../components/Overview"
+import Meta from "../components/Meta"
 const ScenariosPage = () => (
-  <Layout>
-    <PageTitle icon="chart-increasing" text="Your scenarios" />
-    <Overview />
-  </Layout>
+  <>
+    <Meta
+      title="Scenarios"
+      description="All your scenario models in one place."
+      url="https://kind-ride-786754.netlify.app/scenarios"
+    />
+    <Layout>
+      <PageTitle icon="chart-increasing" text="Your scenarios" />
+      <Overview />
+    </Layout>
+  </>
 )
 
 export default ScenariosPage

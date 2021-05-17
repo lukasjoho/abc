@@ -5,6 +5,7 @@ import Layout from "src/layouts/Layout"
 import IconTitle from "src/images/icons/icon-chart-increasing.png"
 import CompChart from "src/components/Chart"
 import Form from "src/components/Form"
+import Meta from "../../components/Meta"
 
 const ModelPage = () => {
   const cref = useRef()
@@ -17,10 +18,17 @@ const ModelPage = () => {
   }
 
   return (
-    <Layout>
-      <PageTitle icon="chart-increasing" text="EBITDA Growth Model" />
-      <CompChart ref={cref} />
-    </Layout>
+    <>
+      <Meta
+        title="EBITDA Growth Model"
+        description="Your model."
+        url="https://kind-ride-786754.netlify.app/scenarios/model-1"
+      />
+      <Layout>
+        <PageTitle icon="chart-increasing" text="EBITDA Growth Model" />
+        <CompChart ref={cref} />
+      </Layout>
+    </>
   )
 }
 
