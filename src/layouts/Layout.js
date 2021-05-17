@@ -21,8 +21,7 @@ import GetWindowDimensions from "src/utils/_getWindowDimensions.js"
 const StyledLayout = styled.div`
   width: 100vw;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  display: none;
 
   .body {
     display: flex;
@@ -33,6 +32,10 @@ const StyledLayout = styled.div`
       padding: 5.5rem;
       min-width: 600px;
     }
+  }
+  @media (min-width: 960px) {
+    display: flex;
+    flex-direction: column;
   }
 `
 const StyledTop = styled.div`
@@ -105,6 +108,9 @@ const StyledMobile = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  @media (min-width: 960px) {
+    display: none;
+  }
   h1 {
     font-size: 3rem;
     line-height: 4.5rem;
@@ -127,46 +133,43 @@ const Layout = ({ children }) => {
       <Theme>
         <GlobalStyle />
 
-        {isDesktop && (
-          <StyledLayout>
-            <StyledTop>
-              <StyledDots>
-                <div className="dot" />
-                <div className="dot" />
-                <div className="dot" />
-              </StyledDots>
-              <StyledRouting>
-                <img src={IconArrow} alt="" />
-              </StyledRouting>
-              <StyledToolbar>
-                <Icon icon={IconPlus} />
-                <StyledAvatars>
-                  <img src={ImageAvatar1} alt="" />
-                  <img src={ImageAvatar2} alt="" />
-                  <img src={ImageAvatar3} alt="" />
-                  <img src={ImageAvatar4} alt="" />
-                </StyledAvatars>
-                <Icon icon={IconSave} />
-                <Icon icon={IconPlay} />
-                <Icon icon={IconDots} />
-              </StyledToolbar>
-            </StyledTop>
-            <div className="body">
-              <Navigation />
-              <div className="inner">{children}</div>
-              <Sidebar />
-            </div>
-          </StyledLayout>
-        )}
-        {!isDesktop && (
-          <StyledMobile>
-            <h1>
-              We are not yet on mobile. <br />
-              Visit our website instead.
-            </h1>
-            <Button text="Our Website" href="https://abacum.io" />
-          </StyledMobile>
-        )}
+        <StyledLayout>
+          <StyledTop>
+            <StyledDots>
+              <div className="dot" />
+              <div className="dot" />
+              <div className="dot" />
+            </StyledDots>
+            <StyledRouting>
+              <img src={IconArrow} alt="" />
+            </StyledRouting>
+            <StyledToolbar>
+              <Icon icon={IconPlus} />
+              <StyledAvatars>
+                <img src={ImageAvatar1} alt="" />
+                <img src={ImageAvatar2} alt="" />
+                <img src={ImageAvatar3} alt="" />
+                <img src={ImageAvatar4} alt="" />
+              </StyledAvatars>
+              <Icon icon={IconSave} />
+              <Icon icon={IconPlay} />
+              <Icon icon={IconDots} />
+            </StyledToolbar>
+          </StyledTop>
+          <div className="body">
+            <Navigation />
+            <div className="inner">{children}</div>
+            <Sidebar />
+          </div>
+        </StyledLayout>
+
+        <StyledMobile>
+          <h1>
+            We are not yet on mobile. <br />
+            Visit our website instead.
+          </h1>
+          <Button text="Our Website" href="https://abacum.io" />
+        </StyledMobile>
       </Theme>
     </>
   )
