@@ -2,18 +2,11 @@ import React from "react"
 import styled from "styled-components"
 const StyledTable = styled.div`
   width: 100%;
-
   border: 1px solid ${props => props.theme.colors.lightgrey};
   border-radius: 1.5rem;
   position: relative;
   overflow: scroll;
-  .overlay {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, white);
-  }
+
   table {
     text-align: left;
     font-size: 1.4rem;
@@ -50,7 +43,6 @@ const StyledTable = styled.div`
 const Table = ({ statedata, labels }) => {
   return (
     <StyledTable>
-      {/* <div className="overlay"></div> */}
       <table>
         <tbody>
           <tr>

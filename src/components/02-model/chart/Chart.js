@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef, forwardRef } from "react"
+import React, { useState, useEffect, forwardRef } from "react"
 import { Line, Bar } from "react-chartjs-2"
 import styled from "styled-components"
-import Form from "./Form"
-import Table from "./Table"
-import Upper from "./Upper"
+import Form from "../form/Form"
+import Table from "../Table"
 
 const StyledChart = styled.div`
-  /* border: 1px solid ${props => props.theme.colors.lightgrey}; */
   margin-bottom: 4rem;
   max-width: 800px;
   display: flex;
@@ -271,7 +269,7 @@ const CompChart = () => {
             fontFamily: "Inter",
             fontColor: "#C2C7CC",
             padding: 10,
-            callback: function (value, index, values) {
+            callback: function (value) {
               return "$ " + value + " M"
             },
           },

@@ -1,8 +1,9 @@
+//dependencies
 import * as React from "react"
-import PageTitle from "../components/PageTitle"
+import { graphql, useStaticQuery } from "gatsby"
+import styled from "styled-components"
 
-import Layout from "../layouts/Layout"
-import IconTitle from "src/images/icons/icon-chart-increasing.png"
+//styles
 import "@fontsource/inter/100.css"
 import "@fontsource/inter/200.css"
 import "@fontsource/inter/300.css"
@@ -12,61 +13,41 @@ import "@fontsource/inter/600.css"
 import "@fontsource/inter/700.css"
 import "@fontsource/inter/800.css"
 import "@fontsource/inter/900.css"
-import Promo from "../components/Promo"
 
-import styled from "styled-components"
-import Meta from "../components/Meta"
-const StyledSkeletons = styled.div`
-  .row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 4rem;
-    .col {
-      width: 45%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+//components
+import PageTitle from "../components/00-shared/PageTitle"
+import Layout from "../layouts/Layout"
+import Promo from "../components/00-shared/Promo"
+import Meta from "../components/00-shared/Meta"
+import Skeletons from "../components/00-shared/Skeletons"
+
+const IndexPage = () => {
+  const { imageMeta } = useStaticQuery(graphql`
+    query {
+      imageMeta: file(relativePath: { eq: "image-meta.jpg" }) {
+        childImageSharp {
+          fixed(width: 1200, quality: 90) {
+            src
+          }
+        }
+      }
     }
-  }
-`
-const Single = styled.div`
-  background: ${props => props.theme.colors.lightgrey};
-  width: ${props => props.width};
-  height: ${props => props.height};
-  border-radius: 1.5rem;
-`
-
-const IndexPage = () => (
-  <>
-    <Meta
-      title="Home"
-      description="Welcome to your personalized home screen."
-      url="https://kind-ride-786754.netlify.app"
-    />
-    <Layout>
-      <PageTitle icon="office-building" text="Home" />
-      <Promo />
-      <StyledSkeletons>
-        <div className="row">
-          <Single height="200px" width="30%" />
-          <Single height="200px" width="30%" />
-          <Single height="200px" width="30%" />
-        </div>
-        <div className="row">
-          <div className="col">
-            <Single height="200px" width="100%" />
-          </div>
-          <div className="col">
-            <Single height="30px" width="100%" />
-            <Single height="30px" width="100%" />
-            <Single height="30px" width="100%" />
-            <Single height="30px" width="100%" />
-            <Single height="30px" width="100%" />
-          </div>
-        </div>
-      </StyledSkeletons>
-    </Layout>
-  </>
-)
+  `)
+  return (
+    <>
+      <Meta
+        title="Home"
+        description="Welcome to your personalized home screen."
+        url="https://kind-ride-786754.netlify.app"
+        image={imageMeta.childImageSharp.fixed.src}
+      />
+      <Layout>
+        <PageTitle icon="office-building" text="Home" />
+        <Promo />
+        <Skeletons />
+      </Layout>
+    </>
+  )
+}
 
 export default IndexPage
