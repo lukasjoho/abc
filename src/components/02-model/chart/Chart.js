@@ -1,35 +1,11 @@
 import React, { useState, useEffect, forwardRef } from "react"
 import { Line, Bar } from "react-chartjs-2"
 import styled from "styled-components"
+
 import Form from "../form/Form"
 import Table from "../Table"
+import { StyledChart, StyledSwitch, StyledSwitchLarge } from "./Styles.js"
 
-const StyledChart = styled.div`
-  margin-bottom: 4rem;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-`
-const StyledSwitch = styled.div`
-  align-self: flex-end;
-  margin-bottom: 2rem;
-  button {
-    all: unset;
-    padding: 0rem 0.5rem;
-    font-weight: 500;
-    color: ${props => props.theme.colors.middlegrey};
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    margin-bottom: ${props => props.mb};
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: 0.15s ease;
-    &.active {
-      color: ${props => props.theme.colors.dark};
-    }
-  }
-`
 const Switch = ({ handleClick, chartType }) => {
   return (
     <StyledSwitch>
@@ -50,28 +26,7 @@ const Switch = ({ handleClick, chartType }) => {
     </StyledSwitch>
   )
 }
-const StyledSwitchLarge = styled.div`
-  align-self: flex-start;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-  button {
-    all: unset;
-    padding: 1rem 1.5rem;
-    font-weight: 500;
-    color: ${props => props.theme.colors.middlegrey};
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    margin-bottom: ${props => props.mb};
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: 0.15s ease;
-    &.active {
-      background: ${props => props.theme.colors.lightgrey};
-      color: ${props => props.theme.colors.dark};
-    }
-  }
-`
+
 const SwitchLarge = ({ handleClick, vizType }) => {
   return (
     <StyledSwitchLarge>
@@ -94,21 +49,22 @@ const SwitchLarge = ({ handleClick, vizType }) => {
 }
 
 const CompChart = () => {
+  //hooks
   const [chartType, setChartType] = useState("line")
-  const handleType = e => {
-    setChartType(e.target.name)
-  }
-  const handleViz = e => {
-    setVizType(e.target.name)
-  }
   const [vizType, setVizType] = useState("graph")
-
   const [chartdata, setChartdata] = useState({})
   const [statedata, setStatedata] = useState({
     worst: [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160],
     base: [60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170],
     best: [70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180],
   })
+  const [fieldValues, setFieldValues] = useState({
+    initial: 1,
+    revenue: [100, 5.0, 12.0, 15.0],
+    cogs: [40, 3.0, 8.0, 12.0],
+    opex: [20, 2.0, 4.0, 8.0],
+  })
+
   const labels = [
     "JAN",
     "FEB",
@@ -123,17 +79,20 @@ const CompChart = () => {
     "NOV",
     "DEZ",
   ]
-
-  const [fieldValues, setFieldValues] = useState({
-    initial: 1,
-    revenue: [100, 5.0, 12.0, 15.0],
-    cogs: [40, 3.0, 8.0, 12.0],
-    opex: [20, 2.0, 4.0, 8.0],
-  })
+  //handleChanges
+  const handleType = e => {
+    setChartType(e.target.name)
+  }
+  const handleViz = e => {
+    setVizType(e.target.name)
+  }
+  //change specific array value after state value change was triggered
   const updateFieldArray = (e, index) => {
     fieldValues[e.target.name][index] = parseFloat(e.target.value)
     return [...fieldValues[e.target.name]]
   }
+
+  //update assumptions after changing them in the table
   const handleFieldValuesChange = (e, index) => {
     setFieldValues({
       ...fieldValues,
@@ -141,6 +100,8 @@ const CompChart = () => {
     })
     transformValues(index)
   }
+
+  //transform user assumptions into array with length of 12
   const generateArray = index => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     const newData = array.map((item, i) => {
@@ -159,6 +120,7 @@ const CompChart = () => {
     return newData
   }
 
+  //update state data with new array
   const transformValues = index => {
     if (index == 0) {
       const worst = generateArray(1)
@@ -190,23 +152,11 @@ const CompChart = () => {
     }
   }
 
+  //chart component
   const chart = () => {
     let datacontent = statedata
     setChartdata({
-      labels: [
-        "JAN",
-        "FEB",
-        "MAR",
-        "APR",
-        "MAY",
-        "JUN",
-        "JUL",
-        "AUG",
-        "SEP",
-        "OCT",
-        "NOV",
-        "DEZ",
-      ],
+      labels: [...labels],
       datasets: [
         {
           label: "Worst",
@@ -235,6 +185,8 @@ const CompChart = () => {
       ],
     })
   }
+
+  //set options for chart
   const options = {
     maintainAspectRatio: true,
     legend: {
@@ -295,9 +247,13 @@ const CompChart = () => {
       ],
     },
   }
+
+  //initialize chart
   useEffect(() => {
     chart()
   }, [statedata])
+
+  //fill chart with data
   useEffect(() => {
     const worst = generateArray(1)
     const base = generateArray(2)
