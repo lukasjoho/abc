@@ -5,6 +5,8 @@ import Button from "./Button"
 import ImageChart from "src/images/image-promo-chart.jpg"
 import ImageNavItem from "src/images/image-promo-navitem.jpg"
 import { Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { graphql, useStaticQuery } from "gatsby"
 const StyledPromo = styled.div`
   border: 1px solid #c9dbcb;
   border-radius: 1.5rem;
@@ -51,6 +53,7 @@ const StyledPromo = styled.div`
       width: 100%;
       border: 1px solid ${props => props.theme.colors.lightgrey};
       border-radius: 1rem;
+      overflow: hidden;
     }
     .navitem {
       position: absolute;
@@ -60,10 +63,35 @@ const StyledPromo = styled.div`
       transform: translate3d(-25%, 5%, 0);
       border: 1px solid ${props => props.theme.colors.lightgrey};
       border-radius: 1rem;
+      overflow: hidden;
     }
   }
 `
 const Promo = () => {
+  const { imageChart, imageNavItem } = useStaticQuery(graphql`
+    query {
+      imageChart: file(relativePath: { eq: "image-promo-chart.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 450
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+            quality: 80
+          )
+        }
+      }
+      imageNavItem: file(relativePath: { eq: "image-promo-navitem.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 250
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+            quality: 80
+          )
+        }
+      }
+    }
+  `)
   return (
     <StyledPromo>
       <div classNae="text">
@@ -79,8 +107,16 @@ const Promo = () => {
         </Link>
       </div>
       <div className="images">
-        <img className="chart" src={ImageChart} alt="" />
-        <img className="navitem" src={ImageNavItem} alt="" />
+        <div className="chart">
+          <GatsbyImage
+            image={getImage(imageChart.childImageSharp.gatsbyImageData)}
+          />
+        </div>
+        <div className="navitem">
+          <GatsbyImage
+            image={getImage(imageNavItem.childImageSharp.gatsbyImageData)}
+          />
+        </div>
       </div>
     </StyledPromo>
   )

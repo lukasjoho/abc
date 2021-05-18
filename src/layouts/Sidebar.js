@@ -1,12 +1,12 @@
-import { Link } from "gatsby"
+//dependencies
 import React from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { graphql, useStaticQuery } from "gatsby"
+
+//assets
 import styled from "styled-components"
 import Badge from "../components/00-shared/Badge"
 import Upper from "src/components/00-shared/Upper"
-import ImageAvatar1 from "src/images/image-lukas.jpg"
-import ImageAvatar2 from "src/images/image-andrew.jpg"
-import ImageAvatar3 from "src/images/image-laura.jpg"
-import ImageAvatar4 from "src/images/image-julio.jpg"
 
 const StyledSidebar = styled.div`
   width: 32rem;
@@ -53,16 +53,21 @@ const StyledComment = styled.div`
   }
   .person {
     margin-right: 1.7rem;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
     img {
-      width: 2.5rem;
+      width: 100%;
       border-radius: 100%;
+      height: 100%;
     }
   }
   .message {
     .info {
       line-height: 2.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0rem;
       color: ${props => props.theme.colors.grey};
+      font-size: 1.5rem;
     }
     .text {
       span {
@@ -75,7 +80,7 @@ const Comment = ({ image, name, time, text }) => {
   return (
     <StyledComment>
       <div className="person">
-        <img src={image} alt="" />
+        <GatsbyImage image={getImage(image)} />
       </div>
       <div className="message">
         <p className="info">{`${name}, ${time} ago`}</p>
@@ -93,6 +98,30 @@ const NavItem = ({ text, active }) => {
   )
 }
 const Sidebar = () => {
+  const { imageAvatar1, imageAvatar2 } = useStaticQuery(graphql`
+    query {
+      imageAvatar1: file(relativePath: { eq: "image-lukas.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 40
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+            quality: 80
+          )
+        }
+      }
+      imageAvatar2: file(relativePath: { eq: "image-andrew.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 40
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+            quality: 80
+          )
+        }
+      }
+    }
+  `)
   return (
     <StyledSidebar>
       <SidebarContainer>
@@ -113,24 +142,24 @@ const Sidebar = () => {
       <SidebarContainer>
         <Upper text="conversation" mb="2rem" />
         <Comment
-          image={ImageAvatar1}
+          image={imageAvatar1.childImageSharp.gatsbyImageData}
           name="Lukas"
           time="29 min"
           text={<>I would love to 🔥</>}
         />
         <Comment
-          image={ImageAvatar2}
+          image={imageAvatar2.childImageSharp.gatsbyImageData}
           name="Andrew"
           time="30 min"
           text={
             <>
-              Looking good <span>@Lukas</span>. You could make a solid product
+              Looks good <span>@Lukas</span>. You could make a solid product
               intern at Abacum.
             </>
           }
         />
         <Comment
-          image={ImageAvatar1}
+          image={imageAvatar1.childImageSharp.gatsbyImageData}
           name="Lukas"
           time="1 hour"
           text={

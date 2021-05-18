@@ -1,9 +1,10 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import ImageModel1 from "src/images/image-model1.jpg"
-import ImageLukas from "src/images/image-lukas.jpg"
+
 import IconGraph from "src/images/icons/icon-graph.svg"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { graphql, useStaticQuery } from "gatsby"
 const StyledOverview = styled.div`
   display: flex;
   > * {
@@ -80,10 +81,10 @@ const ModelItem = ({ avatar, image, title, updated, newItem }) => {
         <Link to="/scenarios/model-1">
           <StyledModelItem className={newItem ? "new" : "content"}>
             <>
-              <img src={image} alt="" width="100%" />
+              <GatsbyImage image={getImage(image)} />
               <div className="footer">
                 <div className="avatar">
-                  <img src={avatar} alt="" width="100%" />
+                  <GatsbyImage image={getImage(avatar)} />
                 </div>
                 <div className="info">
                   <h2>{title}</h2>
@@ -106,11 +107,35 @@ const ModelItem = ({ avatar, image, title, updated, newItem }) => {
   )
 }
 const Overview = ({ text }) => {
+  const { imageLukas, imageModel1 } = useStaticQuery(graphql`
+    query {
+      imageLukas: file(relativePath: { eq: "image-lukas.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 40
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+            quality: 80
+          )
+        }
+      }
+      imageModel1: file(relativePath: { eq: "image-model1.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 300
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+            quality: 80
+          )
+        }
+      }
+    }
+  `)
   return (
     <StyledOverview>
       <ModelItem
-        image={ImageModel1}
-        avatar={ImageLukas}
+        image={imageModel1.childImageSharp.gatsbyImageData}
+        avatar={imageLukas.childImageSharp.gatsbyImageData}
         title="EBITDA Growth Model"
         updated="17h ago"
       />

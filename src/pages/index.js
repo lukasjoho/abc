@@ -33,6 +33,7 @@ const IndexPage = () => {
       }
     }
   `)
+
   return (
     <>
       <Meta
