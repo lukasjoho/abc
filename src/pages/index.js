@@ -37,7 +37,7 @@ const IndexPage = () => {
     <>
       <Meta
         title="Home"
-        description="Welcome to your personalized home screen."
+        description="Abacum helps finance teams scale their companies through business insights, collaboration and automation."
         url="https://kind-ride-786754.netlify.app"
         image={imageMeta.childImageSharp.fixed.src}
       />
