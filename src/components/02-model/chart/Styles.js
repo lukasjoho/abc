@@ -1,6 +1,8 @@
+import React from "react"
 import styled from "styled-components"
+import { motion } from "framer-motion"
 
-export const StyledChart = styled.div`
+export const StyledChart = styled(motion.div)`
   margin-bottom: 4rem;
   max-width: 800px;
   display: flex;

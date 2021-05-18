@@ -5,6 +5,7 @@ import styled from "styled-components"
 import IconGraph from "src/images/icons/icon-graph.svg"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, useStaticQuery } from "gatsby"
+import { motion } from "framer-motion"
 const StyledOverview = styled.div`
   display: flex;
   > * {
@@ -14,7 +15,7 @@ const StyledOverview = styled.div`
     }
   }
 `
-const StyledModelItem = styled.div`
+const StyledModelItem = styled(motion.div)`
   border: 1px solid ${props => props.theme.colors.lightgrey};
   border-radius: 1.5rem;
   width: 280px;
@@ -74,12 +75,25 @@ const StyledModelItem = styled.div`
     }
   }
 `
-const ModelItem = ({ avatar, image, title, updated, newItem }) => {
+const variants = {
+  hidden: { scale: 0.9 },
+  visible: { scale: 1 },
+}
+const spring = {
+  type: "spring",
+}
+const ModelItem = ({ avatar, image, title, updated, newItem, delay }) => {
   return (
     <>
       {image && (
         <Link to="/scenarios/model-1">
-          <StyledModelItem className={newItem ? "new" : "content"}>
+          <StyledModelItem
+            className={newItem ? "new" : "content"}
+            initial="hidden"
+            animate="visible"
+            transition={{ type: "spring", delay: delay }}
+            variants={variants}
+          >
             <>
               <GatsbyImage image={getImage(image)} />
               <div className="footer">
@@ -96,7 +110,13 @@ const ModelItem = ({ avatar, image, title, updated, newItem }) => {
         </Link>
       )}
       {newItem && (
-        <StyledModelItem className={newItem ? "new" : "content"}>
+        <StyledModelItem
+          className={newItem ? "new" : "content"}
+          initial="hidden"
+          animate="visible"
+          transition={{ type: "spring", delay: delay }}
+          variants={variants}
+        >
           <div className="innerContent">
             <img src={IconGraph} alt="" />
             <h2>Create new model</h2>
@@ -138,8 +158,9 @@ const Overview = ({ text }) => {
         avatar={imageLukas.childImageSharp.gatsbyImageData}
         title="EBITDA Growth Model"
         updated="17h ago"
+        delay={0}
       />
-      <ModelItem newItem />
+      <ModelItem newItem delay={0.1} />
     </StyledOverview>
   )
 }

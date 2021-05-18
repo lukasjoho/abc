@@ -3,7 +3,7 @@ import React from "react"
 
 //styles
 import { StyledDot, StyledTitle, StyledTable } from "./Styles.js"
-
+import { motion } from "framer-motion"
 const CaseHead = ({ text, color }) => {
   return (
     <th>
@@ -42,7 +42,7 @@ const Form = ({ handleFieldValuesChange, fieldValues }) => {
   }
 
   return (
-    <div>
+    <motion.div layoutId="form">
       <StyledTitle>⬇️ Adjust your scenarios below</StyledTitle>
       <StyledTable>
         <tbody>
@@ -73,7 +73,7 @@ const Form = ({ handleFieldValuesChange, fieldValues }) => {
           />
         </tbody>
       </StyledTable>
-    </div>
+    </motion.div>
   )
 }
 

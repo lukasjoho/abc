@@ -44,7 +44,9 @@ const IndexPage = () => {
       />
       <Layout>
         <PageTitle icon="office-building" text="Home" />
+
         <Promo />
+
         <Skeletons />
       </Layout>
     </>

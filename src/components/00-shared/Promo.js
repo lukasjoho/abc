@@ -2,12 +2,13 @@ import React from "react"
 import styled from "styled-components"
 import Emoji from "react-apple-emojis"
 import Button from "./Button"
-import ImageChart from "src/images/image-promo-chart.jpg"
-import ImageNavItem from "src/images/image-promo-navitem.jpg"
+
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, useStaticQuery } from "gatsby"
-const StyledPromo = styled.div`
+
+import { motion } from "framer-motion"
+const StyledPromo = styled(motion.div)`
   border: 1px solid #c9dbcb;
   border-radius: 1.5rem;
   background: #f5faf8;
@@ -94,8 +95,21 @@ const Promo = () => {
       }
     }
   `)
+  const variants = {
+    hidden: { scale: 0.9 },
+    visible: { scale: 1 },
+  }
+  const spring = {
+    type: "spring",
+  }
+
   return (
-    <StyledPromo>
+    <StyledPromo
+      initial="hidden"
+      animate="visible"
+      transition={spring}
+      variants={variants}
+    >
       <div classNae="text">
         <div className="label">
           <Emoji className="emoji" name="sparkles" />
