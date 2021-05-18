@@ -18,6 +18,8 @@ const StyledPromo = styled.div`
   align-items: center;
   transition: 0.15s ease;
   max-width: 900px;
+  position: relative;
+  z-index: 0;
   &:hover {
     border: 1px solid #9bb09d;
   }
@@ -103,7 +105,7 @@ const Promo = () => {
         <p>Let us introduce you to scenario models! </p>
 
         <Link to="/scenarios">
-          <Button text="Get Started" />
+          <Button text="Get Started" animation />
         </Link>
       </div>
       <div className="images">

@@ -12,6 +12,7 @@ const StyledButton = styled.button`
   border-radius: 0.6rem;
   color: white;
   font-weight: 500;
+  position: relative;
   img {
     height: 1.4rem;
     margin-right: 1rem;
@@ -19,19 +20,47 @@ const StyledButton = styled.button`
   &:hover {
     background: #7ea094;
   }
+  &.animation {
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 4rem;
+      background: #99b9ae;
+      animation: pulse 3s infinite;
+      border-radius: 0.6rem;
+      z-index: -1;
+      transform: scale(1);
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+  }
 `
-const Button = ({ text, href }) => {
+const Button = ({ text, href, animation }) => {
   return (
     <>
       {href ? (
         <a href={href} target="_blank">
-          <StyledButton>
+          <StyledButton className={animation && "animation"}>
             <img src={IconArrowButton} alt="" />
             {text}
           </StyledButton>
         </a>
       ) : (
-        <StyledButton>
+        <StyledButton className={animation && "animation"}>
           <img src={IconArrowButton} alt="" />
           {text}
         </StyledButton>
