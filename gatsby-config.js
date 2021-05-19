@@ -3,7 +3,7 @@ module.exports = {
     title: `Abacum`,
     description: `Abacum helps finance teams scale their companies through business insights, collaboration and automation.`,
     author: `@lukasjoho`,
-    siteUrl: `https://kind-ride-786754.netlify.app`,
+    siteUrl: `https://scenariofeature.netlify.app`,
     lang: `en`,
   },
   plugins: [

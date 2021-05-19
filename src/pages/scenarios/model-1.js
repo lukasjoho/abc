@@ -13,7 +13,7 @@ const ModelPage = () => {
       <Meta
         title="EBITDA Growth Model"
         description="Your model."
-        url="https://kind-ride-786754.netlify.app/scenarios/model-1"
+        url="https://scenariofeature.netlify.app/scenarios/model-1"
       />
       <Layout>
         <PageTitle icon="chart-increasing" text="EBITDA Growth Model" />

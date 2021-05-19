@@ -13,7 +13,7 @@ const ScenariosPage = () => {
       <Meta
         title="Scenarios"
         description="All your scenario models in one place."
-        url="https://kind-ride-786754.netlify.app/scenarios"
+        url="https://scenariofeature.netlify.app/scenarios"
       />
       <Layout>
         <PageTitle icon="chart-increasing" text="Your scenarios" />
