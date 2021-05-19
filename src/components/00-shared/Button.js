@@ -1,6 +1,10 @@
+//dependencies
 import React from "react"
 import styled from "styled-components"
+
+//assets
 import IconArrowButton from "src/images/icons/icon-arrow-button.svg"
+
 const StyledButton = styled.button`
   all: unset;
   height: 4rem;
@@ -49,21 +53,24 @@ const StyledButton = styled.button`
     }
   }
 `
-const Button = ({ text, href, animation }) => {
+const ButtonInner = ({ text, href, animation }) => {
+  return (
+    <StyledButton className={animation && "animation"}>
+      <img src={IconArrowButton} alt="" />
+      {text}
+    </StyledButton>
+  )
+}
+const Button = ({ ...props }) => {
+  const { href } = props
   return (
     <>
       {href ? (
         <a href={href} target="_blank">
-          <StyledButton className={animation && "animation"}>
-            <img src={IconArrowButton} alt="" />
-            {text}
-          </StyledButton>
+          <ButtonInner {...props} />
         </a>
       ) : (
-        <StyledButton className={animation && "animation"}>
-          <img src={IconArrowButton} alt="" />
-          {text}
-        </StyledButton>
+        <ButtonInner {...props} />
       )}
     </>
   )
