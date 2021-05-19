@@ -145,7 +145,7 @@ const Sidebar = () => {
           image={imageAvatar1.childImageSharp.gatsbyImageData}
           name="Lukas"
           time="29 min"
-          text={<>I would love to 🔥</>}
+          text={<>I would love to! 🔥</>}
         />
         <Comment
           image={imageAvatar2.childImageSharp.gatsbyImageData}
@@ -153,8 +153,7 @@ const Sidebar = () => {
           time="30 min"
           text={
             <>
-              Looks good <span>@Lukas</span>. You could make a solid product
-              intern at Abacum.
+              Looks good <span>@Lukas</span>. Would you like to join Abacum?
             </>
           }
         />

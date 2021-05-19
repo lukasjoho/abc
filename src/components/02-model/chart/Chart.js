@@ -1,9 +1,12 @@
+//dependencies
 import React, { useState, useEffect, forwardRef } from "react"
-import { Line, Bar } from "react-chartjs-2"
-import styled from "styled-components"
 
+//components
+import { Line, Bar } from "react-chartjs-2"
 import Form from "../form/Form"
 import Table from "../Table"
+
+//styles
 import { StyledChart, StyledSwitch, StyledSwitchLarge } from "./Styles.js"
 
 const Switch = ({ handleClick, chartType }) => {
