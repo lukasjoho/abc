@@ -116,7 +116,10 @@ const Promo = () => {
           <h2>New</h2>
         </div>
         <h3>Scenario Models</h3>
-        <p>Let us introduce you to scenario models! </p>
+        <p>
+          Let us introduce you to scenario models! <br />
+          Understand what the future holds for your business finances.
+        </p>
 
         <Link to="/scenarios">
           <Button text="Get Started" animation />
