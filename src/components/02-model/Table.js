@@ -48,28 +48,28 @@ const Table = ({ statedata, labels }) => {
           <tr>
             <th>Scenarios</th>
 
-            {labels.map(label => (
-              <th>
+            {labels.map((label, index) => (
+              <th key={index}>
                 <div>{label}</div>
               </th>
             ))}
           </tr>
           <tr>
             <td>Worst</td>
-            {statedata.worst.map(value => (
-              <td>${value}M</td>
+            {statedata.worst.map((value, index) => (
+              <td key={index}>${value}M</td>
             ))}
           </tr>
           <tr>
             <td>Base</td>
-            {statedata.base.map(value => (
-              <td>${value}M</td>
+            {statedata.base.map((value, index) => (
+              <td key={index}>${value}M</td>
             ))}
           </tr>
           <tr>
             <td>Best</td>
-            {statedata.best.map(value => (
-              <td>${value}M</td>
+            {statedata.best.map((value, index) => (
+              <td key={index}>${value}M</td>
             ))}
           </tr>
         </tbody>
