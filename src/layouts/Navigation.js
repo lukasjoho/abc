@@ -93,8 +93,8 @@ const NavItem = ({ icon, image, text, link, featured, svg }) => {
           >
             <div className="viz">
               {icon && <Emoji className="emoji" name={icon} />}
-              {svg && <img className="svg" src={svg} />}
-              {image && <img src={image} />}
+              {svg && <img className="svg" alt="icon" src={svg} />}
+              {image && <img src={image} alt="item" />}
             </div>
             <p className={image && "highlighted"}>{text}</p>
           </StyledNavItem>
@@ -103,8 +103,8 @@ const NavItem = ({ icon, image, text, link, featured, svg }) => {
         <StyledNavItem className={image && "spaced"}>
           <div className="viz">
             {icon && <Emoji className="emoji" name={icon} />}
-            {svg && <img className="svg" src={svg} />}
-            {image && <img src={image} />}
+            {svg && <img className="svg" alt="" src={svg} />}
+            {image && <img src={image} alt="" />}
           </div>
           <p className={image && "highlighted"}>{text}</p>
         </StyledNavItem>

@@ -66,7 +66,7 @@ const Button = ({ ...props }) => {
   return (
     <>
       {href ? (
-        <a href={href} target="_blank">
+        <a href={href} target="_blank" rel="noreferrer">
           <ButtonInner {...props} />
         </a>
       ) : (

@@ -1,7 +1,6 @@
 //dependencies
 import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import styled from "styled-components"
 
 //styles
 import "@fontsource/inter/100.css"

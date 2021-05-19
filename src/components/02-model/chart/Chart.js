@@ -15,14 +15,14 @@ const Switch = ({ handleClick, chartType }) => {
       <button
         name="line"
         onClick={e => handleClick(e)}
-        className={chartType == "line" && "active"}
+        className={chartType === "line" && "active"}
       >
         Line
       </button>
       <button
         name="bar"
         onClick={e => handleClick(e)}
-        className={chartType == "bar" && "active"}
+        className={chartType === "bar" && "active"}
       >
         Bar
       </button>
@@ -36,14 +36,14 @@ const SwitchLarge = ({ handleClick, vizType }) => {
       <button
         name="graph"
         onClick={e => handleClick(e)}
-        className={vizType == "graph" && "active"}
+        className={vizType === "graph" && "active"}
       >
         Graph
       </button>
       <button
         name="table"
         onClick={e => handleClick(e)}
-        className={vizType == "table" && "active"}
+        className={vizType === "table" && "active"}
       >
         Table
       </button>
@@ -108,7 +108,7 @@ const CompChart = () => {
   const generateArray = index => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     const newData = array.map((item, i) => {
-      if (i == 0) {
+      if (i === 0) {
         const ebit =
           fieldValues.revenue[0] - fieldValues.cogs[0] - fieldValues.opex[0]
         return parseFloat(ebit).toFixed(2)
@@ -125,7 +125,7 @@ const CompChart = () => {
 
   //update state data with new array
   const transformValues = index => {
-    if (index == 0) {
+    if (index === 0) {
       const worst = generateArray(1)
       const base = generateArray(2)
       const best = generateArray(3)
@@ -137,13 +137,13 @@ const CompChart = () => {
       })
     } else {
       let selected
-      if (index == 1) {
+      if (index === 1) {
         selected = "worst"
       }
-      if (index == 2) {
+      if (index === 2) {
         selected = "base"
       }
-      if (index == 3) {
+      if (index === 3) {
         selected = "best"
       }
       const newArray = generateArray(index)
@@ -220,7 +220,7 @@ const CompChart = () => {
           ticks: {
             beginAtZero: true,
             min: 0,
-            max: 500,
+            max: 400,
             fontFamily: "Inter",
             fontColor: "#C2C7CC",
             padding: 10,
@@ -273,10 +273,10 @@ const CompChart = () => {
   return (
     <>
       <StyledChart>
-        {vizType == "graph" && (
+        {vizType === "graph" && (
           <>
             <Switch handleClick={handleType} chartType={chartType} />
-            {chartType == "line" && (
+            {chartType === "line" && (
               <Line
                 id="canvas"
                 data={chartdata}
@@ -285,7 +285,7 @@ const CompChart = () => {
                 options={options}
               />
             )}
-            {chartType == "bar" && (
+            {chartType === "bar" && (
               <Bar
                 id="canvas"
                 data={chartdata}
@@ -296,7 +296,7 @@ const CompChart = () => {
             )}
           </>
         )}
-        {vizType == "table" && <Table statedata={statedata} labels={labels} />}
+        {vizType === "table" && <Table statedata={statedata} labels={labels} />}
         <SwitchLarge handleClick={handleViz} vizType={vizType} />
       </StyledChart>
 

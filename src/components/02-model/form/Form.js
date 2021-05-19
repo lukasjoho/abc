@@ -43,7 +43,12 @@ const Form = ({ handleFieldValuesChange, fieldValues }) => {
 
   return (
     <motion.div layoutId="form">
-      <StyledTitle>⬇️ Adjust your scenarios below</StyledTitle>
+      <StyledTitle>
+        <span role="img" aria-label="emoji">
+          ⬇️
+        </span>{" "}
+        Adjust your scenarios below
+      </StyledTitle>
       <StyledTable>
         <tbody>
           <tr>

@@ -5,7 +5,6 @@ import styled from "styled-components"
 
 //utils
 import Theme from "src/Theme"
-import GetWindowDimensions from "src/utils/_getWindowDimensions.js"
 import GlobalStyle from "src/GlobalStyle"
 
 //components
@@ -53,8 +52,6 @@ const StyledMobile = styled.div`
 `
 
 const Layout = ({ children }) => {
-  const { windowWidth } = GetWindowDimensions()
-  const isDesktop = windowWidth >= 960
   return (
     <>
       <Theme>

@@ -79,9 +79,7 @@ const variants = {
   hidden: { scale: 0.9 },
   visible: { scale: 1 },
 }
-const spring = {
-  type: "spring",
-}
+
 const ModelItem = ({ avatar, image, title, updated, newItem, delay }) => {
   return (
     <>

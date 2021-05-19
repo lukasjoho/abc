@@ -144,22 +144,6 @@ const Sidebar = () => {
         <Comment
           image={imageAvatar1.childImageSharp.gatsbyImageData}
           name="Lukas"
-          time="29 min"
-          text={<>I would love to! 🔥</>}
-        />
-        <Comment
-          image={imageAvatar2.childImageSharp.gatsbyImageData}
-          name="Andrew"
-          time="30 min"
-          text={
-            <>
-              Looks good <span>@Lukas</span>. Would you like to join Abacum?
-            </>
-          }
-        />
-        <Comment
-          image={imageAvatar1.childImageSharp.gatsbyImageData}
-          name="Lukas"
           time="1 hour"
           text={
             <>
@@ -167,6 +151,23 @@ const Sidebar = () => {
               free to play around with the numbers!
             </>
           }
+        />
+        <Comment
+          image={imageAvatar2.childImageSharp.gatsbyImageData}
+          name="Andrew"
+          time="30 min"
+          text={
+            <>
+              Looks good <span>@Lukas</span>. What do you think about joining
+              the Abacum team?
+            </>
+          }
+        />
+        <Comment
+          image={imageAvatar1.childImageSharp.gatsbyImageData}
+          name="Lukas"
+          time="29 min"
+          text={<>I would love to! 🔥</>}
         />
       </SidebarContainer>
     </StyledSidebar>
